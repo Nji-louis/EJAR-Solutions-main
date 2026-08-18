@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>EJAR Admin Dashboard</title>
+
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+
+body{
+background:#f5f7fa;
+}
+
+.sidebar{
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+width:250px;
+
+height:100vh;
+
+background:#0b3d2e;
+
+padding:20px;
+
+color:white;
+
+}
+
+.sidebar h3{
+
+margin-bottom:40px;
+
+text-align:center;
+
+}
+
+.sidebar a{
+
+display:block;
+
+color:white;
+
+padding:12px;
+
+text-decoration:none;
+
+border-radius:6px;
+
+margin-bottom:8px;
+
+}
+
+.sidebar a:hover{
+
+background:#146c43;
+
+}
+
+.main{
+
+margin-left:270px;
+
+padding:30px;
+
+}
+
+.card{
+
+border:none;
+
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h3>EJAR ADMIN</h3>
+
+<a href="dashboard.html" class="active">
+
+<i class="fa fa-chart-line"></i>
+
+Dashboard
+
+</a>
+
+
+<a href="gallery.html">
+    <i class="bi bi-images"></i>
+
+    Gallery
+</a>
+
+<a href="messages.html">
+
+<i class="fa fa-envelope"></i>
+
+Messages
+
+</a>
+
+<a href="counters.html">
+    <i class="fa fa-chart-bar"></i>
+    Homepage Counters
+</a>
+
+<a href="why_choose_us.html">
+    <i class="fa fa-star"></i>
+    Why Choose Us
+</a>
+
+<a href="partners.html">
+    <i class="fa fa-handshake"></i>
+    Partners
+</a>
+
+<a href="blogs.html">
+    <i class="fa fa-blog"></i>
+    Blogs
+</a>
+
+<a href="testimonials.html">
+    <i class="fa fa-comments"></i>
+    Testimonials
+</a>
+
+<a href="faqs.html">
+    <i class="fa fa-question-circle"></i>
+    FAQs
+</a>
+
+<a href="users.html">
+    <i class="fa fa-users"></i>
+    Users
+</a>
+
+<a href="settings.html">
+
+<i class="fa fa-cog"></i>
+
+Settings
+
+</a>
+
+<a href="#" id="logoutBtn">
+
+<i class="fa fa-sign-out-alt"></i>
+
+Logout
+
+</a>
+
+</div>
+
+
+
+<div class="main">
+
+<h2>
+
+Welcome,
+
+<span id="adminName"></span>
+
+</h2>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>Total Messages</h5>
+
+<h2 id="totalMessages">0</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>Total Users</h5>
+
+<h2 id="totalUsers">0</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>New Messages</h5>
+
+<h2 id="newMessages">0</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<div class="card-header">
+
+Recent Messages
+
+</div>
+
+<div class="card-body">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Subject</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="recentMessages">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/admin-guard.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+
+</body>
+
+</html>
