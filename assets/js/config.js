@@ -1,7 +1,7 @@
 const API = {
     BASE_URL:
         window.EJAR_API_BASE_URL ||
-        "http://localhost:5000/api",
+        "https://backend-ejar-solutions.onrender.com/api",
 
     get ASSET_BASE_URL() {
         return this.BASE_URL.replace(/\/api\/?$/, "");

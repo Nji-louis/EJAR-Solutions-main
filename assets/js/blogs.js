@@ -41,7 +41,7 @@ async function loadBlogs() {
                 <td>
 
                     <img
-                        src="${API.BASE_URL}${blog.image}"
+                        src="${API.assetUrl(blog.image)}"
                         width="70">
 
                 </td>

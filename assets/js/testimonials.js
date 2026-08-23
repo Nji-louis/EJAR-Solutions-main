@@ -41,7 +41,7 @@ async function loadTestimonials() {
                 <td>
 
                     <img
-                        src="${API.BASE_URL}${item.image}"
+                        src="${API.assetUrl(item.image)}"
                         width="70">
 
                 </td>
