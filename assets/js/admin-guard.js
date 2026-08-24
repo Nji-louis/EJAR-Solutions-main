@@ -10,9 +10,12 @@
     }
 
     Api.get("/users/profile").then((profile) => {
-        if (!profile || profile.role !== "admin") {
-            Api.redirectToLogin();
-        }
+        if (
+    !profile ||
+    !["admin", "editor"].includes(profile.role)
+) {
+    Api.redirectToLogin();
+}
     }).catch(() => {
         Api.redirectToLogin();
     });

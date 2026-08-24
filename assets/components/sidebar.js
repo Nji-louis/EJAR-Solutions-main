@@ -1,3 +1,9 @@
+const currentUser =
+    JSON.parse(localStorage.getItem("user") || "{}");
+
+const isAdmin =
+    currentUser.role === "admin";
+
 document.write(`
 
 <div class="sidebar">
@@ -14,9 +20,10 @@ EJAR SOLUTIONS
 
 <a href="gallery.html">🖼 Gallery</a>
 
+${isAdmin ? `
 <a href="users.html">👥 Users</a>
-
 <a href="settings.html">⚙ Settings</a>
+` : ""}
 
 <hr>
 
