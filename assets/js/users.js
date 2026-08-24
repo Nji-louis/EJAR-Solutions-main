@@ -12,7 +12,49 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("userForm")
         .addEventListener("submit", saveUser);
 
+    document
+        .getElementById("addUserBtn")
+        .addEventListener("click", openAddUserModal);
+
 });
+
+
+// ========================================
+// OPEN ADD USER MODAL
+// ========================================
+
+function openAddUserModal() {
+
+    editingUserId = null;
+
+    document.getElementById("userModalTitle").innerText =
+    "Edit User";
+
+document.getElementById("password").required = false;
+document.getElementById("password").value = "";
+
+    document.getElementById("userForm").reset();
+
+    document.getElementById("userModalTitle").innerText =
+        "Add User";
+
+    document.getElementById("form-submit").innerHTML =
+        '<i class="bi bi-person-plus-fill"></i> Create User';
+
+    const passwordInput =
+        document.getElementById("password");
+
+    passwordInput.value = "";
+    passwordInput.required = true;
+
+    document.getElementById("passwordGroup")
+        .style.display = "block";
+
+    new bootstrap.Modal(
+        document.getElementById("userModal")
+    ).show();
+
+}
 
 
 // ========================================
@@ -30,85 +72,100 @@ async function loadUsers() {
 
         table.innerHTML = "";
 
+        if (!Array.isArray(users)) {
+
+            alert(
+                users.message ||
+                "Unable to load users."
+            );
+
+            return;
+        }
+
         users.forEach(user => {
+
+            const joined = user.created_at
+                ? new Date(
+                    user.created_at
+                ).toLocaleDateString()
+                : "-";
 
             table.innerHTML += `
 
-            <tr>
+                <tr>
 
-                <td>${user.id}</td>
+                    <td>${user.id}</td>
 
-                <td>${user.name}</td>
+                    <td>${user.name}</td>
 
-                <td>${user.email}</td>
+                    <td>${user.email}</td>
 
-                <td>
+                    <td>
+                        <span class="badge ${
+                            user.role === "admin"
+                                ? "bg-success"
+                                : "bg-primary"
+                        }">
+                            ${user.role}
+                        </span>
+                    </td>
 
-                    <span class="badge ${user.role === "admin"
-                        ? "bg-success"
-                        : "bg-primary"}">
+                    <td>${joined}</td>
 
-                        ${user.role}
+                    <td>
 
-                    </span>
+                        <button
+                            class="btn btn-warning btn-sm edit-btn"
+                            data-id="${user.id}">
 
-                </td>
+                            Edit
 
-                <td>
+                        </button>
 
-                    ${new Date(user.created_at).toLocaleDateString()}
+                        <button
+                            class="btn btn-danger btn-sm delete-btn"
+                            data-id="${user.id}">
 
-                </td>
+                            Delete
 
-                <td>
+                        </button>
 
-                    <button
-                        class="btn btn-warning btn-sm edit-btn"
-                        data-id="${user.id}">
+                    </td>
 
-                        Edit
-
-                    </button>
-
-                    <button
-                        class="btn btn-danger btn-sm delete-btn"
-                        data-id="${user.id}">
-
-                        Delete
-
-                    </button>
-
-                </td>
-
-            </tr>
-
+                </tr>
             `;
 
         });
 
-        // Edit Buttons
 
-        document.querySelectorAll(".edit-btn")
+        document
+            .querySelectorAll(".edit-btn")
             .forEach(button => {
 
-                button.addEventListener("click", () => {
-
-                    editUser(button.dataset.id);
-
-                });
+                button.addEventListener(
+                    "click",
+                    () => {
+                        editUser(
+                            button.dataset.id
+                        );
+                    }
+                );
 
             });
 
-        // Delete Buttons
 
-        document.querySelectorAll(".delete-btn")
+        document
+            .querySelectorAll(".delete-btn")
             .forEach(button => {
 
-                button.addEventListener("click", () => {
-
-                    deleteUser(button.dataset.id);
-
-                });
+                button.addEventListener(
+                    "click",
+                    () => {
+                        deleteUser(
+                            button.dataset.id
+                        );
+                    }
+                );
 
             });
 
@@ -116,13 +173,20 @@ async function loadUsers() {
 
     catch (error) {
 
-        console.error(error);
+        console.error(
+            "Load Users Error:",
+            error
+        );
 
         alert("Unable to load users.");
 
     }
 
 }
+
+
+
+
 
 // ========================================
 // EDIT USER
@@ -132,9 +196,26 @@ async function editUser(id) {
 
     try {
 
-        const user = await Api.get(`/users/${id}`);
+        const user =
+            await Api.get(`/users/${id}`);
+
+        if (!user || !user.id) {
+
+            alert(
+                user.message ||
+                "Unable to load user."
+            );
+
+            return;
+        }
 
         editingUserId = id;
+
+        document.getElementById("userModalTitle").innerText =
+    "Edit User";
+
+document.getElementById("password").required = false;
+document.getElementById("password").value = "";
 
         document.getElementById("name").value =
             user.name;
@@ -145,8 +226,21 @@ async function editUser(id) {
         document.getElementById("role").value =
             user.role;
 
-        document.getElementById("form-submit").innerText =
-            "Update User";
+        document.getElementById("userModalTitle").innerText =
+            "Edit User";
+
+        document.getElementById("form-submit").innerHTML =
+            '<i class="bi bi-check-circle-fill"></i> Update User';
+
+        const passwordInput =
+            document.getElementById("password");
+
+        passwordInput.required = false;
+        passwordInput.value = "";
+
+        // Password is not changed from this edit form
+        document.getElementById("passwordGroup")
+            .style.display = "none";
 
         new bootstrap.Modal(
             document.getElementById("userModal")
@@ -156,7 +250,10 @@ async function editUser(id) {
 
     catch (error) {
 
-        console.error(error);
+        console.error(
+            "Edit User Error:",
+            error
+        );
 
         alert("Unable to load user.");
 
@@ -164,9 +261,181 @@ async function editUser(id) {
 
 }
 
+
 // ========================================
-// UPDATE USER
+// CREATE / UPDATE USER
 // ========================================
+
+async function saveUser(e) {
+
+    e.preventDefault();
+
+    const name =
+        document.getElementById("name")
+            .value.trim();
+
+    const email =
+        document.getElementById("email")
+            .value.trim();
+
+    const role =
+        document.getElementById("role")
+            .value;
+
+    try {
+
+        let result;
+
+
+        // =========================
+        // CREATE NEW USER
+        // =========================
+
+        if (!editingUserId) {
+
+            const password =
+                document.getElementById(
+                    "password"
+                ).value;
+
+            if (!password) {
+
+                alert(
+                    "Password is required."
+                );
+
+                return;
+
+            }
+
+            result = await Api.post(
+                "/users",
+                {
+                    name,
+                    email,
+                    password,
+                    role
+                }
+            );
+
+        }
+
+
+        // =========================
+        // UPDATE EXISTING USER
+        // =========================
+
+        else {
+
+            result = await Api.put(
+                `/users/${editingUserId}`,
+                {
+                    name,
+                    email,
+                    role
+                }
+            );
+
+        }
+
+
+        if (!result.success) {
+
+            alert(
+                result.message ||
+                "Unable to save user."
+            );
+
+            return;
+
+        }
+
+
+        alert(result.message);
+
+        editingUserId = null;
+
+        document
+            .getElementById("userForm")
+            .reset();
+
+        const modal =
+            bootstrap.Modal.getInstance(
+                document.getElementById(
+                    "userModal"
+                )
+            );
+
+        if (modal) {
+            modal.hide();
+        }
+
+        loadUsers();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Save User Error:",
+            error
+        );
+
+        alert("Unable to save user.");
+
+    }
+
+}
+
+
+// ========================================
+// DELETE USER
+// ========================================
+
+async function deleteUser(id) {
+
+    if (
+        !confirm(
+            "Are you sure you want to delete this user?"
+        )
+    ) {
+        return;
+    }
+
+    try {
+
+        const result =
+            await Api.delete(`/users/${id}`);
+
+        if (!result.success) {
+
+            alert(
+                result.message ||
+                "Unable to delete user."
+            );
+
+            return;
+        }
+
+        alert(result.message);
+
+        loadUsers();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Delete User Error:",
+            error
+        );
+
+        alert("Unable to delete user.");
+
+    }
+
+}
+
 
 async function saveUser(e) {
 
@@ -175,34 +444,55 @@ async function saveUser(e) {
     const user = {
 
         name:
-            document.getElementById("name").value,
+            document.getElementById("name").value.trim(),
 
         email:
-            document.getElementById("email").value,
+            document.getElementById("email").value.trim(),
 
         role:
             document.getElementById("role").value
 
     };
 
+    const password =
+        document.getElementById("password").value;
+
+    if (!editingUserId) {
+        user.password = password;
+    }
+
     try {
 
-        const result = await Api.put(
+        let result;
 
-            `/users/${editingUserId}`,
+        if (editingUserId) {
 
-            user
+            result = await Api.put(
+                `/users/${editingUserId}`,
+                user
+            );
 
-        );
+        } else {
+
+            result = await Api.post(
+                "/users",
+                user
+            );
+
+        }
+
+        if (result.success === false) {
+            alert(result.message || "Operation failed.");
+            return;
+        }
 
         alert(result.message);
 
         editingUserId = null;
 
-        document.getElementById("userForm").reset();
-
-        document.getElementById("form-submit").innerText =
-            "Update User";
+        document
+            .getElementById("userForm")
+            .reset();
 
         bootstrap.Modal
             .getInstance(
@@ -218,39 +508,7 @@ async function saveUser(e) {
 
         console.error(error);
 
-        alert("Unable to update user.");
-
-    }
-
-}
-
-// ========================================
-// DELETE USER
-// ========================================
-
-async function deleteUser(id) {
-
-    if (!confirm("Are you sure you want to delete this user?")) {
-
-        return;
-
-    }
-
-    try {
-
-        const result = await Api.delete(`/users/${id}`);
-
-        alert(result.message);
-
-        loadUsers();
-
-    }
-
-    catch (error) {
-
-        console.error(error);
-
-        alert("Unable to delete user.");
+        alert("Unable to save user.");
 
     }
 
