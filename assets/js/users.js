@@ -39,15 +39,6 @@ function openAddUserModal() {
     "Send Invitation";
         
 
-    const passwordInput =
-        document.getElementById("password");
-
-    passwordInput.value = "";
-    passwordInput.required = true;
-
-    document.getElementById("passwordGroup")
-        .style.display = "block";
-
     new bootstrap.Modal(
         document.getElementById("userModal")
     ).show();
@@ -212,9 +203,6 @@ async function editUser(id) {
         document.getElementById("userModalTitle").innerText =
     "Edit User";
 
-document.getElementById("password").required = false;
-document.getElementById("password").value = "";
-
         document.getElementById("name").value =
             user.name;
 
@@ -229,16 +217,6 @@ document.getElementById("password").value = "";
 
         document.getElementById("form-submit").innerHTML =
             '<i class="bi bi-check-circle-fill"></i> Update User';
-
-        const passwordInput =
-            document.getElementById("password");
-
-        passwordInput.required = false;
-        passwordInput.value = "";
-
-        // Password is not changed from this edit form
-        document.getElementById("passwordGroup")
-            .style.display = "none";
 
         new bootstrap.Modal(
             document.getElementById("userModal")
