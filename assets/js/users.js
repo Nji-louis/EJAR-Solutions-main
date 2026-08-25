@@ -30,16 +30,14 @@ function openAddUserModal() {
     document.getElementById("userModalTitle").innerText =
     "Edit User";
 
-document.getElementById("password").required = false;
-document.getElementById("password").value = "";
-
     document.getElementById("userForm").reset();
 
     document.getElementById("userModalTitle").innerText =
-        "Add User";
+    "Invite User";
 
-    document.getElementById("form-submit").innerHTML =
-        '<i class="bi bi-person-plus-fill"></i> Create User';
+    document.getElementById("form-submit").innerText =
+    "Send Invitation";
+        
 
     const passwordInput =
         document.getElementById("password");
@@ -293,27 +291,11 @@ async function saveUser(e) {
 
         if (!editingUserId) {
 
-            const password =
-                document.getElementById(
-                    "password"
-                ).value;
-
-            if (!password) {
-
-                alert(
-                    "Password is required."
-                );
-
-                return;
-
-            }
-
             result = await Api.post(
                 "/users",
                 {
                     name,
                     email,
-                    password,
                     role
                 }
             );
@@ -454,12 +436,6 @@ async function saveUser(e) {
 
     };
 
-    const password =
-        document.getElementById("password").value;
-
-    if (!editingUserId) {
-        user.password = password;
-    }
 
     try {
 
