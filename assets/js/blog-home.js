@@ -85,9 +85,7 @@ async function loadHomepageBlogs() {
                 "";
 
 
-            const slug =
-                blog.slug ||
-                blog.id;
+     const blogId = blog.id;
 
 
             container.innerHTML += `
@@ -115,9 +113,7 @@ async function loadHomepageBlogs() {
 
                         <div class="green-button">
 
-                            <a href="blog-detail.html?slug=${encodeURIComponent(slug)}">
-                                Read Article
-                            </a>
+                            <a href="blog-detail.html?id=${blogId}">Read Article</a>
 
                         </div>
 
