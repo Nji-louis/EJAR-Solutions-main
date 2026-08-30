@@ -13,10 +13,15 @@ async function loadGallery() {
 
         gallery.forEach(item => {
 
+            const category =
+                (item.category || "")
+                    .toLowerCase()
+                    .trim();
+
             container.innerHTML += `
 
             <div class="col-lg-4 col-md-6"
-                 data-category="${item.category}">
+                 data-category="${category}">
 
                 <figure class="gallery-card">
 
@@ -47,7 +52,7 @@ async function loadGallery() {
 
     catch (error) {
 
-        console.error(error);
+        console.error("Gallery loading error:", error);
 
     }
 

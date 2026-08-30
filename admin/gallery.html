@@ -210,6 +210,8 @@ data-bs-dismiss="modal">
 type="hidden"
 id="galleryId">
 
+
+
 <div class="mb-3">
 
 <label class="form-label">
@@ -225,6 +227,9 @@ class="form-control"
 required>
 
 </div>
+
+
+
 
 
 <div class="mb-3">
@@ -258,10 +263,30 @@ Category
 
 </label>
 
-<input
-type="text"
+<select
 id="category"
-class="form-control">
+class="form-select"
+required>
+
+<option value="">Select a category</option>
+
+<option value="cleaning">
+    Cleaning Projects
+</option>
+
+<option value="logistics">
+    Logistics Operations
+</option>
+
+<option value="consulting">
+    Consulting Activities
+</option>
+
+<option value="team">
+    Team Photos
+</option>
+
+</select>
 
 </div>
 

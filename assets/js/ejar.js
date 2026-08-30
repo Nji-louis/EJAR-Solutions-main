@@ -116,9 +116,13 @@ if (form.classList.contains("newsletter-form")) {
 
       } else {
 
-        showMessage(form, "error", "Failed to send your inquiry.");
+    showMessage(
+        form,
+        "error",
+        result.message || "Failed to complete your subscription."
+    );
 
-      }
+}
 
     } catch (error) {
 
