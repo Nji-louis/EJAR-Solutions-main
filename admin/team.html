@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EJAR SOLUTIONS | Team</title>
+
+<link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/css/fontawesome.css">
+<link rel="stylesheet" href="../assets/css/admin.css">
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+<div class="row">
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="col-md-2 bg-dark text-white min-vh-100 p-0">
+
+<div class="p-3 text-center border-bottom">
+<h4>EJAR CMS</h4>
+</div>
+
+<div class="list-group list-group-flush">
+
+<a href="dashboard.html"
+class="list-group-item list-group-item-action">
+
+<i class="bi bi-speedometer2"></i>
+Dashboard
+
+</a>
+
+<div class="list-group-item bg-dark text-white fw-bold">
+WEBSITE CONTENT
+</div>
+
+<a href="counters.html"
+class="list-group-item list-group-item-action">
+
+<i class="bi bi-bar-chart"></i>
+Homepage Counters
+
+</a>
+
+<a href="why_choose_us.html"
+class="list-group-item list-group-item-action">
+
+<i class="bi bi-star"></i>
+Why Choose Us
+
+</a>
+
+<a href="partners.html"
+class="list-group-item list-group-item-action">
+
+<i class="bi bi-diagram-3"></i>
+Partners
+
+</a>
+
+<a href="gallery.html"
+class="list-group-item list-group-item-action">
+
+<i class="bi bi-images"></i>
+Gallery
+
+</a>
+
+<a href="blogs.html"
+class="list-group-item list-group-item-action">
+
+<i class="bi bi-journal-text"></i>
+Blog
+
+</a>
+
+<a href="testimonials.html"
+class="list-group-item list-group-item-action">
+
+<i class="bi bi-chat-left-quote"></i>
+Testimonials
+
+</a>
+
+<a href="faqs.html"
+class="list-group-item list-group-item-action">
+
+<i class="bi bi-question-circle"></i>
+FAQs
+
+</a>
+
+<a href="team.html"
+class="list-group-item list-group-item-action active">
+
+<i class="bi bi-people"></i>
+Team
+
+</a>
+
+<div class="list-group-item bg-dark text-white fw-bold">
+COMMUNICATION
+</div>
+
+<a href="messages.html"
+class="list-group-item list-group-item-action">
+
+<i class="bi bi-envelope"></i>
+Messages
+
+</a>
+
+<div class="list-group-item bg-dark text-white fw-bold">
+ADMINISTRATION
+</div>
+
+<a href="users.html"
+class="list-group-item list-group-item-action">
+
+<i class="bi bi-people"></i>
+Users
+
+</a>
+
+<a href="settings.html"
+class="list-group-item list-group-item-action">
+
+<i class="bi bi-gear"></i>
+Settings
+
+</a>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<div class="col-md-10">
+
+<div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+
+<h2>
+<i class="bi bi-people"></i>
+Team Management
+</h2>
+
+<button
+class="btn btn-success"
+id="addTeamBtn"
+data-bs-toggle="modal"
+data-bs-target="#teamModal">
+
+<i class="bi bi-plus-circle"></i>
+Add Team Member
+
+</button>
+
+</div>
+
+<!-- =====================================================
+     TEAM TABLE
+===================================================== -->
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-hover align-middle">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+
+<th>Photo</th>
+
+<th>Name</th>
+
+<th>Role</th>
+
+<th>Department</th>
+
+<th>Order</th>
+
+<th>Status</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody id="teamTable">
+
+<tr>
+
+<td colspan="8"
+    class="text-center">
+
+Loading team members...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+     ADD / EDIT TEAM MEMBER MODAL
+===================================================== -->
+
+<div class="modal fade"
+     id="teamModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+<div class="modal-dialog modal-lg">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h5 class="modal-title"
+    id="teamModalTitle">
+
+Add Team Member
+
+</h5>
+
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal"> </button>
+
+</div>
+
+<div class="modal-body">
+
+<form id="teamForm">
+
+<!-- NAME -->
+
+<div class="mb-3">
+
+<label class="form-label">
+Name
+</label>
+
+<input
+type="text"
+id="name"
+class="form-control"
+required>
+
+</div>
+
+<!-- ROLE -->
+
+<div class="mb-3">
+
+<label class="form-label">
+Role
+</label>
+
+<input
+type="text"
+id="role"
+class="form-control"
+required>
+
+</div>
+
+<!-- DEPARTMENT -->
+
+<div class="mb-3">
+
+<label class="form-label">
+Department
+</label>
+
+<input
+type="text"
+id="department"
+class="form-control">
+
+</div>
+
+<!-- DESCRIPTION -->
+
+<div class="mb-3">
+
+<label class="form-label">
+Description
+</label>
+
+<textarea
+id="description"
+class="form-control"
+rows="4"
+required>
+</textarea>
+
+</div>
+
+<!-- IMAGE -->
+
+<div class="mb-3">
+
+<label class="form-label">
+Team Photo
+</label>
+
+<input
+type="file"
+id="imageFile"
+class="form-control"
+accept="image/*">
+
+<div class="mt-2">
+
+<img
+id="imagePreview"
+src=""
+alt="Preview"
+style="max-width:120px; display:none;"
+class="img-thumbnail">
+
+</div>
+
+</div>
+
+<!-- SKILLS -->
+
+<div class="mb-3">
+
+<label class="form-label">
+Skills
+</label>
+
+<input
+type="text"
+id="skills"
+class="form-control"
+placeholder="Example: Business consulting, Client advisory">
+
+<div class="form-text">
+Separate skills with commas.
+</div>
+
+</div>
+
+<!-- PHONE -->
+
+<div class="mb-3">
+
+<label class="form-label">
+Phone
+</label>
+
+<input
+type="text"
+id="phone"
+class="form-control"
+placeholder="+237 6 95 12 95 07">
+
+</div>
+
+<!-- EMAIL -->
+
+<div class="mb-3">
+
+<label class="form-label">
+Email
+</label>
+
+<input
+type="email"
+id="email"
+class="form-control"
+placeholder="ejar7070@gmail.com">
+
+</div>
+
+<!-- SORT ORDER -->
+
+<div class="mb-3">
+
+<label class="form-label">
+Display Order
+</label>
+
+<input
+type="number"
+id="sort_order"
+class="form-control"
+value="0"
+min="0">
+
+</div>
+
+<!-- STATUS -->
+
+<div class="mb-3">
+
+<label class="form-label">
+Status
+</label>
+
+<select
+id="status"
+class="form-select">
+
+<option value="active">
+Active
+</option>
+
+<option value="inactive">
+Inactive
+</option>
+
+</select>
+
+</div>
+
+<div class="d-flex justify-content-end gap-2">
+
+<button
+type="button"
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+Cancel
+
+</button>
+
+<button
+type="submit"
+class="btn btn-success"
+id="formSubmit">
+
+Save Team Member
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+     SCRIPTS
+===================================================== -->
+
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="../assets/js/config.js"></script>
+
+<script src="../assets/js/api.js"></script>
+
+<script src="../assets/js/team-admin.js"></script>
+
+</body>
+
+</html>
