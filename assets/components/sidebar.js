@@ -1,85 +1,115 @@
-const currentUser =
-    JSON.parse(localStorage.getItem("user") || "{}");
+(function () {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const isAdmin = user.role === "admin";
+    const currentPage = window.location.pathname.split("/").pop() || "dashboard.html";
 
-const isAdmin =
-    currentUser.role === "admin";
+    const sections = [
+        {
+            title: "Overview",
+            links: [
+                ["dashboard.html", "fa-chart-line", "Dashboard"]
+            ]
+        },
+        {
+            title: "Website Content",
+            links: [
+                ["counters.html", "fa-chart-bar", "Homepage Counters"],
+                ["why_choose_us.html", "fa-star", "Why Choose Us"],
+                ["partners.html", "fa-handshake", "Partners"],
+                ["gallery.html", "fa-images", "Gallery"],
+                ["blogs.html", "fa-blog", "Blog"],
+                ["testimonials.html", "fa-comments", "Testimonials"],
+                ["faqs.html", "fa-question-circle", "FAQs"],
+                ["team.html", "fa-users", "Team"]
+            ]
+        },
+        {
+            title: "Communication",
+            links: [
+                ["messages.html", "fa-envelope", "Messages"],
+                ["newsletter.html", "fa-newspaper", "Newsletter"]
+            ]
+        },
+        {
+            title: "Administration",
+            adminOnly: true,
+            links: [
+                ["users.html", "fa-user-shield", "Users"],
+                ["settings.html", "fa-cog", "Settings"]
+            ]
+        }
+    ];
 
-const currentPage =
-    window.location.pathname.split("/").pop();
+    function navLink([href, icon, label]) {
+        const active = currentPage === href ? "active" : "";
 
-function active(page) {
-    return currentPage === page ? "active" : "";
-}
+        return `
+            <a href="${href}" class="${active}" aria-current="${active ? "page" : "false"}">
+                <i class="fa ${icon}" aria-hidden="true"></i>
+                <span>${label}</span>
+            </a>
+        `;
+    }
 
-document.write(`
+    function normalizeMainLayout() {
+        document
+            .querySelectorAll("body > .sidebar, .container-fluid > .row > .col-md-2")
+            .forEach((element) => element.remove());
 
-<div class="sidebar">
+        const bootstrapMain = document.querySelector(".container-fluid > .row > .col-md-10");
+        const directMain = document.querySelector("body > .main");
+        const main = bootstrapMain || directMain;
 
-    <div class="logo">
-        EJAR SOLUTIONS
-    </div>
+        if (!main) return;
 
-    <a href="dashboard.html" class="${active("dashboard.html")}">
-        🏠 Dashboard
-    </a>
+        main.classList.add("main");
+        main.classList.remove("col-md-10", "col-lg-10", "col-xl-10");
+        main.removeAttribute("style");
+    }
 
-    <a href="counters.html" class="${active("counters.html")}">
-        📊 Homepage Counters
-    </a>
+    function renderSidebar() {
+        normalizeMainLayout();
 
-    <a href="why_choose_us.html" class="${active("why_choose_us.html")}">
-        ⭐ Why Choose Us
-    </a>
+        const navSections = sections
+            .filter((section) => !section.adminOnly || isAdmin)
+            .map((section) => `
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">${section.title}</div>
+                    ${section.links.map(navLink).join("")}
+                </div>
+            `)
+            .join("");
 
-    <a href="services.html" class="${active("services.html")}">
-        🛠 Services
-    </a>
+        const sidebar = document.createElement("aside");
+        sidebar.className = "sidebar";
+        sidebar.innerHTML = `
+            <div class="sidebar-brand">
+                <span class="sidebar-brand-mark">E</span>
+                <span>
+                    <strong>EJAR</strong>
+                    <small>Admin CMS</small>
+                </span>
+            </div>
 
-    <a href="partners.html" class="${active("partners.html")}">
-        🤝 Partners
-    </a>
+            <nav class="sidebar-nav" aria-label="Admin navigation">
+                ${navSections}
+            </nav>
 
-    <a href="gallery.html" class="${active("gallery.html")}">
-        🖼 Gallery
-    </a>
+            <div class="sidebar-footer">
+                <a href="#" id="logoutBtn">
+                    <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        `;
 
-    <a href="blogs.html" class="${active("blogs.html")}">
-        📝 Blog
-    </a>
+        document.body.classList.add("admin-layout");
+        document.body.insertBefore(sidebar, document.body.firstChild);
+    }
 
-    <a href="testimonials.html" class="${active("testimonials.html")}">
-        💬 Testimonials
-    </a>
-
-    <a href="faqs.html" class="${active("faqs.html")}">
-        ❓ FAQs
-    </a>
-
-    <a href="messages.html" class="${active("messages.html")}">
-        📩 Messages
-    </a>
-
-    ${isAdmin ? `
-        <a href="users.html" class="${active("users.html")}">
-            👥 Users
-        </a>
-
-        <a href="settings.html" class="${active("settings.html")}">
-            ⚙ Settings
-        </a>
-    ` : ""}
-
-    <hr>
-
-    <a href="#" id="logoutBtn">
-        🚪 Logout
-    </a>
-
-</div>
-
-`);
-
-
-
-
-
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", renderSidebar);
+    } else {
+        renderSidebar();
+    }
+}());
