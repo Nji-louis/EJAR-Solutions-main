@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/ejarvgkm/public_html/ejar-preview/
+    - /bin/mkdir -p "$DEPLOYPATH"
+    - /bin/cp -R * "$DEPLOYPATH"
