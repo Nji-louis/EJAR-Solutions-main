@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - HOMEPAGE FAQ PREVIEW
+// EJAR GROUP SARL - HOMEPAGE FAQ PREVIEW
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,7 +18,7 @@ async function loadHomepageFAQs() {
     try {
 
         const faqs =
-            await Api.publicGet("/faqs/public");
+            await Api.publicGet("/faqs");
 
         const accordion =
             document.getElementById("faqAccordion");

@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - HOMEPAGE TESTIMONIALS
+// EJAR GROUP SARL - HOMEPAGE TESTIMONIALS
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {

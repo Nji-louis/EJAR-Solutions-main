@@ -52,7 +52,7 @@ async function loadBlogDetail() {
 
         if (!blog || blog.message || blog.status !== "published") {
             setText("blogTitle", "Article Not Available");
-            setText("blogMeta", "EJAR SOLUTIONS Insights");
+            setText("blogMeta", "EJAR GROUP SARL Insights");
             article.innerHTML = `
                 <p>This article is not available right now.</p>
                 <div class="green-button"><a href="blog.html">Back to Blog</a></div>
@@ -60,13 +60,13 @@ async function loadBlogDetail() {
             return;
         }
 
-        const title = blog.title || "EJAR SOLUTIONS Article";
+        const title = blog.title || "EJAR GROUP SARL Article";
         const description = blog.meta_description || blog.excerpt || "";
-        const category = blog.category || "EJAR SOLUTIONS Insights";
+        const category = blog.category || "EJAR GROUP SARL Insights";
         const author = blog.author ? ` · ${blog.author}` : "";
         const image = API.assetUrl(blog.image);
 
-        document.title = blog.meta_title || `${title} | EJAR SOLUTIONS Blog`;
+        document.title = blog.meta_title || `${title} | EJAR GROUP SARL Blog`;
         setMeta('meta[name="description"]', description);
         setMeta('meta[property="og:title"]', title);
         setMeta('meta[property="og:description"]', description);
@@ -83,7 +83,7 @@ async function loadBlogDetail() {
     } catch (error) {
         console.error(error);
         setText("blogTitle", "Unable to Load Article");
-        setText("blogMeta", "EJAR SOLUTIONS Insights");
+        setText("blogMeta", "EJAR GROUP SARL Insights");
         article.innerHTML = `
             <p>We could not load this article. Please try again later.</p>
             <div class="green-button"><a href="blog.html">Back to Blog</a></div>

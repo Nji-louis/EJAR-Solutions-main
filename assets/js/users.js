@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - USERS MANAGEMENT
+// EJAR GROUP SARL - USERS MANAGEMENT
 // ========================================
 
 let editingUserId = null;

@@ -9,7 +9,16 @@ const API = {
 
     assetUrl(path) {
         if (!path) return "";
-        if (/^https?:\/\//i.test(path)) return path;
-        return `${this.ASSET_BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+        const normalizedPath = String(path).replace(/\\/g, "/");
+
+        if (/^(?:https?:)?\/\//i.test(normalizedPath) || /^(?:data|blob):/i.test(normalizedPath)) {
+            return normalizedPath;
+        }
+
+        if (/^\/?uploads\//i.test(normalizedPath)) {
+            return `${this.ASSET_BASE_URL}${normalizedPath.startsWith("/") ? normalizedPath : `/${normalizedPath}`}`;
+        }
+
+        return normalizedPath;
     }
 };

@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - NEWSLETTER MANAGEMENT
+// EJAR GROUP SARL - NEWSLETTER MANAGEMENT
 // ========================================
 
 let newsletterSubscribers = [];

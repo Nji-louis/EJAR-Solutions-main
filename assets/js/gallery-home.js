@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - HOMEPAGE GALLERY
+// EJAR GROUP SARL - HOMEPAGE GALLERY
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -74,7 +74,7 @@ async function loadHomepageGallery() {
 
                         <img
                             src="${imageUrl}"
-                            alt="${image.title || "EJAR SOLUTIONS gallery image"}"
+                            alt="${image.title || "EJAR GROUP SARL gallery image"}"
                             class="img-fluid">
 
                         <h4>

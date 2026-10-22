@@ -14,23 +14,24 @@
 	  }
 	});
 	
-	$('.filters ul li').click(function(){
-        $('.filters ul li').removeClass('active');
-        $(this).addClass('active');
-          
-          var data = $(this).attr('data-filter');
-          $grid.isotope({
-            filter: data
-          })
-        });
+	if ($.fn.isotope) {
+		var $grid = $(".grid").isotope({
+			itemSelector: ".all",
+			percentPosition: true,
+			masonry: {
+				columnWidth: ".all"
+			}
+		});
 
-        var $grid = $(".grid").isotope({
-          itemSelector: ".all",
-          percentPosition: true,
-          masonry: {
-            columnWidth: ".all"
-          }
-        })
+		$('.filters ul li').click(function(){
+			$('.filters ul li').removeClass('active');
+			$(this).addClass('active');
+
+			$grid.isotope({
+				filter: $(this).attr('data-filter')
+			});
+		});
+	}
 
 
 	const Accordion = {
@@ -112,7 +113,7 @@
 	$(document).on("click", ".naccs .menu div", function() {
 		var numberIndex = $(this).index();
 	
-		if (!$(this).is("active")) {
+		if (!$(this).hasClass("active")) {
 			$(".naccs .menu div").removeClass("active");
 			$(".naccs ul li").removeClass("active");
 	
@@ -126,25 +127,27 @@
 		}
 	});
 
-	$('.owl-testimonials').owlCarousel({
-		items:1,
-		loop:true,
-		dots: true,
-		nav: false,
-		autoplay: true,
-		margin:15,
-		  responsive:{
-			  0:{
-				  items:1
-			  },
-			  600:{
-				  items:1
-			  },
-			  1000:{
-				  items:1
-			  }
-		  }
-	  })
+	if ($.fn.owlCarousel) {
+		$('.owl-testimonials').owlCarousel({
+			items:1,
+			loop:true,
+			dots: true,
+			nav: false,
+			autoplay: true,
+			margin:15,
+			responsive:{
+				0:{
+					items:1
+				},
+				600:{
+					items:1
+				},
+				1000:{
+					items:1
+				}
+			}
+		});
+	}
 	
 	
 
@@ -205,8 +208,22 @@
 	    var scrollPos = $(document).scrollTop();
 	    $('.nav a').each(function () {
 	        var currLink = $(this);
-	        var refElement = $(currLink.attr("href"));
-	        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+	        var href = currLink.attr("href");
+
+	        if (!href || href.charAt(0) !== "#") {
+	            currLink.removeClass("active");
+	            return;
+	        }
+
+	        var refElement = $(href);
+	        var position = refElement.position();
+
+	        if (!position) {
+	            currLink.removeClass("active");
+	            return;
+	        }
+
+	        if (position.top <= scrollPos && position.top + refElement.height() > scrollPos) {
 	            $('.nav ul li a').removeClass("active");
 	            currLink.addClass("active");
 	        }
@@ -280,10 +297,14 @@
             $w = jQuery(window),
             viewTop = $w.scrollTop(),
             viewBottom = viewTop + $w.height(),
-            _top = $t.offset().top,
-            _bottom = _top + $t.height(),
-            compareTop = partial === true ? _bottom : _top,
-            compareBottom = partial === true ? _top : _bottom;
+	        offset = $t.offset();
+
+	    if (!$t.length || !offset) return false;
+
+	    var _top = offset.top,
+	        _bottom = _top + $t.height(),
+	        compareTop = partial === true ? _bottom : _top,
+	        compareBottom = partial === true ? _top : _bottom;
 
         return ((compareBottom <= viewBottom) && (compareTop >= viewTop) && $t.is(':visible'));
 

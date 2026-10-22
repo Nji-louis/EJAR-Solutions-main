@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS HOMEPAGE CMS
+// EJAR GROUP SARL HOMEPAGE CMS
 // ========================================
 
 let editingHero = null;

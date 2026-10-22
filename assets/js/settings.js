@@ -1,5 +1,5 @@
 // ======================================
-// // EJAR SOLUTIONS - SETTINGS MANAGEMENT
+// // EJAR GROUP SARL - SETTINGS MANAGEMENT
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {

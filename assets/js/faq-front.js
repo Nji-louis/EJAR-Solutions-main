@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - FAQ FRONTEND
+// EJAR GROUP SARL - FAQ FRONTEND
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {

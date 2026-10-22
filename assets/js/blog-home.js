@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - HOMEPAGE BLOG PREVIEW
+// EJAR GROUP SARL - HOMEPAGE BLOG PREVIEW
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -72,7 +72,7 @@ async function loadHomepageBlogs() {
 
             const category =
                 blog.category ||
-                "EJAR SOLUTIONS";
+                "EJAR GROUP SARL";
 
 
             const title =

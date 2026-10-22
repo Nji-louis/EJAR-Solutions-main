@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - PUBLIC SETTINGS
+// EJAR GROUP SARL - PUBLIC SETTINGS
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {

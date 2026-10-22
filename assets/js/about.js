@@ -55,7 +55,7 @@ async function loadAbout() {
                 document.getElementById("aboutPreview");
 
             preview.src =
-                API.BASE_URL.replace("/api", "") + aboutImage;
+                API.assetUrl(aboutImage);
 
             preview.style.display = "block";
 
@@ -95,7 +95,7 @@ async function uploadAboutImage() {
             document.getElementById("aboutPreview");
 
         preview.src =
-            API.BASE_URL.replace("/api", "") + aboutImage;
+            API.assetUrl(aboutImage);
 
         preview.style.display = "block";
 

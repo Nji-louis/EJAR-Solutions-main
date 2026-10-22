@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - BLOG FRONTEND
+// EJAR GROUP SARL - BLOG FRONTEND
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {

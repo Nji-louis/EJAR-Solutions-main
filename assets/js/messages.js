@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - MESSAGES MANAGEMENT
+// EJAR GROUP SARL - MESSAGES MANAGEMENT
 // ========================================
 
 let currentMessageId = null;

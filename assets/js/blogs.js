@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - BLOG MANAGEMENT
+// EJAR GROUP SARL - BLOG MANAGEMENT
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {

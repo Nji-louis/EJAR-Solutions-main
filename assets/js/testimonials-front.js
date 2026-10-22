@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - FRONTEND TESTIMONIALS
+// EJAR GROUP SARL - FRONTEND TESTIMONIALS
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -173,7 +173,7 @@ if (form.classList.contains("newsletter-form")) {
 
     var image = overlay.querySelector("img");
     image.src = trigger.getAttribute("data-lightbox");
-    image.alt = trigger.querySelector("img") ? trigger.querySelector("img").alt : "EJAR SOLUTIONS gallery preview";
+    image.alt = trigger.querySelector("img") ? trigger.querySelector("img").alt : "EJAR GROUP SARL gallery preview";
     overlay.classList.add("active");
   });
 

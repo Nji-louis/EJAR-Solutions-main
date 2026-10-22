@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - PUBLIC TEAM
+// EJAR GROUP SARL - PUBLIC TEAM
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -83,7 +83,7 @@ async function loadTeam() {
                 .join("");
 
             const image = member.image
-                ? member.image
+                ? API.assetUrl(member.image)
                 : "assets/images/about-left-image.jpg";
 
             const phoneHTML = member.phone

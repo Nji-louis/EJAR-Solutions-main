@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - GALLERY MANAGEMENT
+// EJAR GROUP SARL - GALLERY MANAGEMENT
 // ========================================
 
 let editingGalleryId = null;

@@ -1,11 +1,11 @@
 // ========================================
-// EJAR SOLUTIONS - SERVICES MANAGEMENT
+// EJAR GROUP SARL - SERVICES MANAGEMENT
 // ========================================
 
 
 // assets/js/services.js
 // ========================================
-// EJAR SOLUTIONS - SERVICES MANAGEMENT
+// EJAR GROUP SARL - SERVICES MANAGEMENT
 // ========================================
 
 let editingServiceId = null;

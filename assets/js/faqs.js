@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - FAQ MANAGEMENT
+// EJAR GROUP SARL - FAQ MANAGEMENT
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {

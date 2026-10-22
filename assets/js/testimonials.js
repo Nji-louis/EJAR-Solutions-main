@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - TESTIMONIALS MANAGEMENT
+// EJAR GROUP SARL - TESTIMONIALS MANAGEMENT
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {

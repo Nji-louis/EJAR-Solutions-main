@@ -57,8 +57,15 @@ const Api = {
     async publicGet(endpoint) {
 
         const response = await fetch(`${API.BASE_URL}${endpoint}`);
+        const data = await this.parseResponse(response);
 
-        return await this.parseResponse(response);
+        if (!response.ok) {
+            throw new Error(
+                data.message || `Public request failed: ${response.status}`
+            );
+        }
+
+        return data;
 
     },
 

@@ -1,5 +1,5 @@
 // ========================================
-// EJAR SOLUTIONS - FRONTEND SERVICES
+// EJAR GROUP SARL - FRONTEND SERVICES
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,7 +27,7 @@ async function loadServices() {
         if (!activeServices.length) {
             container.innerHTML = `
                 <div class="col-lg-12">
-                    <p class="text-center">Service information is being updated. Please contact EJAR SOLUTIONS for current support options.</p>
+                    <p class="text-center">Service information is being updated. Please contact EJAR GROUP SARL for current support options.</p>
                 </div>
             `;
             return;
@@ -157,7 +157,7 @@ async function loadServices() {
         if (container) {
             container.innerHTML = `
                 <div class="col-lg-12">
-                    <p class="text-center">Unable to load services right now. Please try again later or contact EJAR SOLUTIONS directly.</p>
+                    <p class="text-center">Unable to load services right now. Please try again later or contact EJAR GROUP SARL directly.</p>
                 </div>
             `;
         }
