@@ -226,7 +226,7 @@ header
 }
 
 .header-area {
-  background-image: url(../images/heading-bg.jpg);
+  background-image: url(../images/slide-02.jpg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -1980,7 +1980,7 @@ button.orange-button:hover {
 .corporate-stats {
   margin-top: 0;
   padding: 56px 0;
-  background: var(--ejar-navy);
+  background: linear-gradient(135deg, var(--ejar-navy) 0%, #1b2038 100%);
 }
 
 .stats-intro h6 {
@@ -2000,27 +2000,34 @@ button.orange-button:hover {
 }
 
 .stat-card {
-  min-height: 150px;
-  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 170px;
+  padding: 28px 24px;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .stat-card strong {
   display: block;
   color: #fff;
-  font-size: 44px;
+  font-size: clamp(2.5rem, 3vw, 4rem);
   line-height: 1;
+  letter-spacing: -0.05em;
   font-weight: 800;
   margin-bottom: 12px;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 .stat-card span {
-  color: rgba(255, 255, 255, 0.74);
+  color: rgba(255, 255, 255, 0.86);
   font-size: 14px;
   line-height: 22px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .page-heading .page-intro {
@@ -2391,6 +2398,8 @@ button.orange-button:hover {
 }
 
 .brand-card {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   padding: 42px;
   background: #fff;
@@ -2418,6 +2427,16 @@ button.orange-button:hover {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 18px;
+}
+
+.brand-card p {
+  margin-bottom: 24px;
+  color: var(--ejar-muted);
+  line-height: 1.75;
+}
+
+.brand-card .green-button {
+  margin-top: auto;
 }
 
 .expertise-section {
@@ -2725,7 +2744,7 @@ footer {
   }
 
   .stat-card strong {
-    font-size: 36px;
+    font-size: 2.3rem;
   }
 
   .process-card,
