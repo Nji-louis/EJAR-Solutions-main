@@ -67,7 +67,7 @@ async function loadHomepageBlogs() {
             const image =
                 blog.image
                     ? API.assetUrl(blog.image)
-                    : "assets/images/service-image-01.jpg";
+                    : "assets/images/service-image01.jpg";
 
 
             const category =
@@ -100,6 +100,7 @@ async function loadHomepageBlogs() {
 
                         <img
                             src="${image}"
+                            data-blog-image
                             alt="${title}"
                             class="img-fluid">
 

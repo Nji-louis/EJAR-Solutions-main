@@ -64,7 +64,9 @@ async function loadBlogDetail() {
         const description = blog.meta_description || blog.excerpt || "";
         const category = blog.category || "EJAR GROUP SARL Insights";
         const author = blog.author ? ` · ${blog.author}` : "";
-        const image = API.assetUrl(blog.image);
+        const image = blog.image
+            ? API.assetUrl(blog.image)
+            : "assets/images/service-image01.jpg";
 
         document.title = blog.meta_title || `${title} | EJAR GROUP SARL Blog`;
         setMeta('meta[name="description"]', description);
@@ -75,7 +77,7 @@ async function loadBlogDetail() {
         setText("blogMeta", `${category}${author}`);
 
         article.innerHTML = `
-            ${image ? `<img src="${image}" alt="${escapeHtml(title)}" class="img-fluid mb-4">` : ""}
+            <img src="${image}" data-blog-image alt="${escapeHtml(title)}" class="img-fluid mb-4">
             ${category ? `<span class="division-pill">${escapeHtml(category)}</span>` : ""}
             ${renderParagraphs(blog.content || blog.excerpt)}
         `;

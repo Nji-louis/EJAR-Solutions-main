@@ -35,7 +35,9 @@ async function loadBlogs() {
 
         publishedBlogs.forEach(blog => {
 
-                const image = API.assetUrl(blog.image);
+                const image = blog.image
+                    ? API.assetUrl(blog.image)
+                    : "assets/images/service-image01.jpg";
 
                 container.innerHTML += `
 
@@ -45,6 +47,7 @@ async function loadBlogs() {
 
                         <img
                             src="${image}"
+                            data-blog-image
                             class="img-fluid mb-3"
                             alt="${blog.title}">
 

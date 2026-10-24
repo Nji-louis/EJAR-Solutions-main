@@ -10,14 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadServices() {
 
+    const container =
+        document.getElementById("servicesContainer");
+
+    // The services page currently renders its verified catalog from HTML.
+    // Keep that catalog as the fallback when no API-backed target is present.
+    if (!container) return;
+
     try {
 
         const services = await Api.publicGet("/services");
-
-        const container =
-            document.getElementById("servicesContainer");
-
-        if (!container) return;
 
         container.innerHTML = "";
 
