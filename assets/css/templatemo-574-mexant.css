@@ -2048,6 +2048,12 @@ button.orange-button:hover {
   margin-bottom: 50px;
 }
 
+.services-more-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 34px;
+}
+
 .services .service-item {
   position: relative;
   display: flex;
@@ -2063,6 +2069,112 @@ button.orange-button:hover {
   box-shadow: var(--ejar-shadow);
   border-radius: 4px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.services .service-category-card {
+  min-height: 100%;
+}
+
+.services .service-category-card h3 {
+  margin: 0 0 12px;
+  color: var(--ejar-navy);
+  font-size: 21px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.services .service-subservices {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.services .service-subservices li {
+  border-top: 1px solid var(--ejar-line);
+}
+
+.services .service-subservices a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 54px;
+  padding: 12px 0;
+  color: var(--ejar-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.services .service-subservices a i {
+  flex: 0 0 auto;
+  color: var(--ejar-green);
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.services .service-subservices a:hover {
+  color: var(--ejar-green);
+}
+
+.services .service-subservices a:hover i {
+  transform: translateX(3px);
+}
+
+.service-divisions-preview {
+  margin-top: 28px;
+}
+
+.service-divisions-preview .service-group-heading {
+  margin-bottom: 18px;
+}
+
+.division-service-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 82px;
+  padding: 18px 22px;
+  border: 1px solid var(--ejar-line);
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: var(--ejar-shadow);
+  color: var(--ejar-navy);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.division-service-link > i:first-child {
+  color: var(--ejar-green);
+  font-size: 20px;
+}
+
+.division-service-link > i:last-child {
+  margin-left: auto;
+  color: var(--ejar-green);
+  font-size: 13px;
+}
+
+.division-service-link span {
+  display: grid;
+  gap: 4px;
+}
+
+.division-service-link small {
+  color: var(--ejar-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.division-service-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(19, 32, 51, 0.1);
+  color: var(--ejar-green);
 }
 
 .services .service-group {
