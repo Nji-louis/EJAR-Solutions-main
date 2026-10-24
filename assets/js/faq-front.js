@@ -2,26 +2,98 @@
 // EJAR GROUP SARL - FAQ FRONTEND
 // ========================================
 
+const FALLBACK_FAQS = [
+    {
+        id: 1,
+        question: "What services does EJAR GROUP SARL provide?",
+        answer: "We support businesses with compliance, financial management, growth strategy, training, and operational support, while also delivering professional cleaning and logistics support through our divisions.",
+        status: "active",
+        sort_order: 1
+    },
+    {
+        id: 2,
+        question: "Who do you work with?",
+        answer: "We serve entrepreneurs, SMEs, property owners, households, and organizations across Cameroon, with a strong focus on Douala, Buea, and Yaoundé.",
+        status: "active",
+        sort_order: 2
+    },
+    {
+        id: 3,
+        question: "Can EJAR help with tax compliance and company registration?",
+        answer: "Yes. We help companies with registration, tax compliance, labour and regulatory compliance, governance reviews, and internal control assessments.",
+        status: "active",
+        sort_order: 3
+    },
+    {
+        id: 4,
+        question: "Do you offer practical training and mentorship?",
+        answer: "Yes. We provide corporate training, bookkeeping and financial literacy training, practical audit training, mentorship, seminars, and webinars.",
+        status: "active",
+        sort_order: 4
+    }
+];
+
 document.addEventListener("DOMContentLoaded", () => {
 
     loadFAQs();
 
 });
 
+async function fetchPublicFaqs() {
+
+    const endpoints = [
+        "/faqs/public",
+        "/faqs"
+    ];
+
+    let lastError = null;
+
+    for (const endpoint of endpoints) {
+
+        try {
+
+            const response = await Api.publicGet(endpoint);
+            const payload = Array.isArray(response)
+                ? response
+                : Array.isArray(response.faqs)
+                    ? response.faqs
+                    : Array.isArray(response.data)
+                        ? response.data
+                        : [];
+
+            if (payload.length > 0) {
+                return payload;
+            }
+
+        }
+        catch (error) {
+            lastError = error;
+        }
+
+    }
+
+    console.warn("Using fallback FAQ data.", lastError);
+    return FALLBACK_FAQS;
+
+}
+
 async function loadFAQs() {
 
     try {
 
-        const faqs =
-            await Api.publicGet("/faqs");
+        const faqs = await fetchPublicFaqs();
 
         const container =
             document.getElementById("faqContainer");
 
+        if (!container) {
+            return;
+        }
+
         container.innerHTML = "";
 
         faqs
-            .filter(faq => faq.status === "active")
+            .filter(faq => faq && faq.status === "active")
             .forEach(faq => {
 
                 container.innerHTML += `
@@ -48,7 +120,12 @@ async function loadFAQs() {
 
             });
 
-        // Accordion Behaviour
+        if (!container.querySelector(".faq-item")) {
+            container.innerHTML = `
+                <div class="alert alert-info">FAQs are temporarily unavailable. Please check back soon.</div>
+            `;
+            return;
+        }
 
         document
             .querySelectorAll(".faq-question")
@@ -114,6 +191,13 @@ async function loadFAQs() {
     catch (err) {
 
         console.error(err);
+
+        const container = document.getElementById("faqContainer");
+        if (container) {
+            container.innerHTML = `
+                <div class="alert alert-info">FAQs are temporarily unavailable. Please check back soon.</div>
+            `;
+        }
 
     }
 

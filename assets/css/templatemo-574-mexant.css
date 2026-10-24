@@ -1295,7 +1295,7 @@ section.top-section .accordions {
 .accordion-head.is-open .icon {
   transform: rotate(45deg);
 }
-.accordion-body {
+.accordions .accordion-body {
   padding: 0px;
   overflow: hidden;
   height: 0;
@@ -2034,13 +2034,125 @@ button.orange-button:hover {
 }
 
 .services .service-item {
-  min-height: 230px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 285px;
+  margin-top: 0;
+  padding: 30px;
+  overflow: hidden;
   border: 1px solid var(--ejar-line);
   border-top: 3px solid var(--ejar-green);
-  border-left: 1px solid var(--ejar-line);
+  background: #fff;
   box-shadow: var(--ejar-shadow);
   border-radius: 4px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.services .service-group {
+  margin-top: 20px;
+}
+
+.services .service-group-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ejar-line);
+}
+
+.services .service-group-range {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-width: 58px;
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 3px;
+  background: rgba(11, 99, 183, 0.08);
+  color: var(--ejar-green);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.services .service-group-heading h3 {
+  margin: 0;
+  color: var(--ejar-navy);
+  font-size: 23px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.services .service-item .service-number {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #d8e0e8;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.services .service-item > i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  float: none;
+  width: 48px;
+  height: 48px;
+  margin: 0 0 22px;
+  border-radius: 4px;
+  background: rgba(11, 99, 183, 0.08);
+  color: var(--ejar-green);
+  font-size: 20px;
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.services .service-item h4 {
+  margin: 0 0 12px;
+  color: var(--ejar-navy);
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.services .service-item p {
+  flex: 1 0 auto;
+  margin: 0 0 22px;
+  color: var(--ejar-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.services .service-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 9px;
+  margin-top: auto;
+  color: var(--ejar-green);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+.services .service-link i {
+  color: inherit;
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.services .service-link:hover {
+  color: var(--ejar-orange);
+}
+
+.services .service-link:hover i {
+  transform: translateX(3px);
 }
 
 .services .service-item:hover,
@@ -2051,15 +2163,20 @@ button.orange-button:hover {
   box-shadow: 0 24px 54px rgba(19, 32, 51, 0.12);
 }
 
+.services .service-item:hover > i {
+  margin-top: 0;
+  background: var(--ejar-green);
+  color: #fff;
+}
+
 .services .service-item i,
 .main-services .service-item i {
   color: var(--ejar-green);
 }
 
-.services .service-item h3 {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 15px;
+.services .service-item:hover .service-link i {
+  background: transparent;
+  color: inherit;
 }
 
 .simple-cta {
@@ -2148,8 +2265,9 @@ button.orange-button:hover {
   aspect-ratio: 4 / 3;
   margin-bottom: 24px;
   border-radius: 4px;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+  background-color: #f7f8fa;
   border: 1px solid var(--ejar-line);
 }
 
