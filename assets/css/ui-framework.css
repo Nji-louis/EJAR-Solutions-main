@@ -1,0 +1,172 @@
+/* EJAR UI framework — responsive component layer for the public home page. */
+:root {
+  --ui-ink: #102d40;
+  --ui-brand: #087b74;
+  --ui-brand-dark: #05635e;
+  --ui-sun: #f5bd47;
+  --ui-cloud: #f4f8f8;
+  --ui-border: #dce8e9;
+  --ui-radius: 18px;
+  --ui-shadow: 0 16px 44px rgba(9, 40, 63, .10);
+}
+
+body { color: var(--ui-ink); }
+
+/* Buttons share a consistent, high-contrast action pattern. */
+.green-button a,
+.orange-button a {
+  min-height: 48px;
+  gap: 8px;
+  border-radius: 10px;
+}
+
+.green-button a { background: var(--ui-brand); }
+.green-button a:hover { background: var(--ui-brand-dark); }
+
+.orange-button a { background: var(--ui-sun); color: var(--ui-ink); }
+
+/* Hero */
+.slide-inner.ejar-slide { isolation: isolate; }
+.slide-inner.ejar-slide::after {
+  position: absolute;
+  z-index: -1;
+  right: 7%;
+  bottom: 10%;
+  width: clamp(160px, 22vw, 280px);
+  height: clamp(160px, 22vw, 280px);
+  border: 1px solid rgba(138, 232, 215, .24);
+  border-radius: 50%;
+  content: "";
+}
+
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border: 1px solid rgba(146, 236, 219, .36);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .10);
+  color: #dffff8;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .03em;
+}
+
+.eyebrow-pill i { color: #83e2d2; }
+
+.hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 32px;
+  color: rgba(255, 255, 255, .86);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.hero-proof i { margin-right: 7px; color: #7ce0ce; }
+
+/* Trust and data display */
+.trust-bar {
+  position: relative;
+  z-index: 2;
+  margin: -28px auto 0;
+  width: min(1140px, calc(100% - 32px));
+  border: 1px solid var(--ui-border) !important;
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow);
+}
+
+.trust-item { position: relative; }
+.trust-item h4 { color: var(--ui-ink); font-size: 14px; font-weight: 700; }
+
+.trust-bar .col-md-3:not(:last-child) .trust-item::after {
+  position: absolute;
+  top: 20%;
+  right: 0;
+  width: 1px;
+  height: 60%;
+  background: var(--ui-border);
+  content: "";
+}
+
+.corporate-stats { margin-top: 76px; }
+.stats-intro h2 { color: #fff; font-size: clamp(1.85rem, 3.1vw, 2.7rem); line-height: 1.18; }
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid rgba(157, 236, 222, .2);
+  transition: transform .2s ease, background .2s ease;
+}
+.stat-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, .14); }
+
+/* Services: card-based navigation designed for scanning. */
+.services .section-intro { max-width: 660px; margin: 18px auto 0; }
+.services .service-item {
+  position: relative;
+  overflow: hidden;
+  min-height: 238px;
+  background: #fff;
+}
+.services .service-item::after {
+  position: absolute;
+  top: -58px;
+  right: -58px;
+  width: 138px;
+  height: 138px;
+  border-radius: 50%;
+  background: rgba(8, 123, 116, .055);
+  content: "";
+}
+.services .service-item > i {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 22px;
+  border-radius: 14px;
+  place-items: center;
+  background: #eaf7f5;
+  color: var(--ui-brand);
+  font-size: 21px;
+}
+.service-subservices { position: relative; z-index: 1; }
+.service-subservices li + li { margin-top: 6px; }
+.service-subservices a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  color: #496272;
+  font-size: 14px;
+  font-weight: 600;
+}
+.service-subservices a i { color: var(--ui-brand); transition: transform .2s ease; }
+.service-subservices a:hover { color: var(--ui-brand); }
+.service-subservices a:hover i { transform: translateX(4px); }
+
+.division-service-link { border-radius: 14px; }
+.process-card,
+.expertise-card,
+.brand-card,
+.team-summary { border-radius: var(--ui-radius); }
+
+@media (max-width: 767px) {
+  .trust-bar { width: calc(100% - 24px); margin-top: -18px; border-radius: 14px; }
+  .trust-bar .col-md-3:not(:last-child) .trust-item::after { display: none; }
+  .eyebrow-pill { margin-bottom: 16px; font-size: 11px; }
+  .hero-proof { gap: 11px 16px; margin-top: 24px; font-size: 12px; }
+  .slide-inner.ejar-slide::after { right: -58px; bottom: 4%; }
+  .corporate-stats { margin-top: 62px; }
+  .services .service-item { min-height: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-card,
+  .service-subservices a i { transition: none; }
+}

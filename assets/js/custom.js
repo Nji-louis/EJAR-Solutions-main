@@ -157,6 +157,36 @@
 			$(this).toggleClass('active');
 			$('.header-area .nav').slideToggle(200);
 		});
+
+		/* Keep the compact navigation easy to use with touch and keyboard. */
+		$('.menu-trigger')
+			.attr({ role: 'button', tabindex: '0', 'aria-expanded': 'false', 'aria-label': 'Open navigation menu' })
+			.on('keydown', function(event) {
+				if (event.key === 'Enter' || event.key === ' ') {
+					event.preventDefault();
+					$(this).trigger('click');
+				}
+			})
+			.on('click', function() {
+				var open = $(this).hasClass('active');
+				$(this).attr({
+					'aria-expanded': open ? 'true' : 'false',
+					'aria-label': open ? 'Close navigation menu' : 'Open navigation menu'
+				});
+			});
+
+		$('.header-area .nav a').on('click', function() {
+			if (window.matchMedia('(max-width: 1199px)').matches) {
+				$('.menu-trigger').removeClass('active').attr({ 'aria-expanded': 'false', 'aria-label': 'Open navigation menu' });
+				$('.header-area .nav').stop(true, true).slideUp(200);
+			}
+		});
+
+		$(document).on('keydown', function(event) {
+			if (event.key === 'Escape' && $('.menu-trigger').hasClass('active')) {
+				$('.menu-trigger').trigger('click');
+			}
+		});
 	}
 
 
